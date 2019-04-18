@@ -1,0 +1,65 @@
+:root {
+    --title-color: #333;
+    --large-width: 1000px;
+    --nav-opacity: opacity(0.4);
+}
+
+
+/* メイン */
+
+.main h2 , p{
+    margin: 0;
+}
+
+.main li section {
+    border-bottom: solid 1px #333;
+    margin-bottom: 50px;
+}
+
+.main section p {
+    margin-bottom: 20px;
+}
+
+.main ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+
+
+@media (min-width: 768px) {
+
+    .main {
+        padding-top: 30px;
+        display: flex;
+        max-width: var(--large-width);
+        margin: 0px auto;
+    }
+    
+    .main ul {
+        flex: 3;
+        padding-right: 15px;
+    }
+    
+    .main aside {
+        flex: 1;
+    }
+}
+
+/* 最近の記事 */
+aside ul {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+}
+
+aside a {
+    display: block;
+    color: inherit;
+}
+
+aside a:hover {
+    color: #ddd;
+}
+

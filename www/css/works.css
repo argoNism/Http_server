@@ -1,0 +1,63 @@
+:root {
+    --title-color: #333;
+    --large-width: 1000px;
+    --nav-opacity: opacity(0.4);
+}
+
+
+/* メイン */
+.main {
+    padding-top: 30px;
+    max-width: var(--large-width);
+    margin: 0px auto;
+    padding-bottom: 30px;
+}
+
+.main .container {
+    display: flex;
+}
+
+.main .container {
+    width: 100%;
+    display: flex;
+}
+
+.bot-shooter .photo {
+    min-height: 200px;
+    background-image: url(../img/BotShooter_image.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex: 3;
+}
+
+.container .description {
+    flex: 2;
+    padding: 50px;
+}
+
+.main .description h2 {
+    margin: 10px 10px 10px 0px;
+}
+
+.container h2, p {
+    margin: 0;
+}
+
+.same {
+    /* flex-direction: row-reverse; */
+}
+
+.same .photo {
+    min-height: 200px;
+    background-image: url(../img/5_5-tatami_mat\ size_room\ with_shark.gif);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex: 3;
+}
+
+.same .description {
+    flex: 2;
+    padding: 50px;
+}
