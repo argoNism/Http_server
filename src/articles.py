@@ -38,12 +38,25 @@ def add_tag(str):
         c = conn.cursor()
         c.execute("insert into tags(name) values (?)", (str))
         conn.commit()
-        print("add tags", str)
+        print("add tags:", str)
 
     except sqlite3.OperationalError as e:
         print("sqlite3.OperationalError:", e)
 
 
-    pass
+# get article titles (and id by default) from database.
+def get_titles(with_id=True):
+     try:
+        conn = sqlite3.connect('db/articles.db')
+        c = conn.cursor()
+	if with_id:
+	    c.execute("select id, title from articles")
+	else:
+	    c.execute("select title from articles")
+        
+	return c.fetchall()
 
+    except sqlite3.OperationalError as e:
+        print("sqlite3.OperationalError:", e)
 
+ 
