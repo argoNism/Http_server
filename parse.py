@@ -68,7 +68,7 @@ def parse_request(msg: str):
 def coroutine(msg: str):
     print("step in colution")
     lines = msg.splitlines()
-    if lines[0] is not None:
+    if lines:
         yield lines[0]
     else:
         yield None
