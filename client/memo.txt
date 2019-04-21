@@ -1,6 +1,0 @@
-main.py
-    recv前にsocket.sen　するとerror54を吐かれる。
-    socket.closeするタイミングをミスるとerror9
-
-file.read()
-の()のつけ忘れでbuild-in function and method クラスのあれになるから注意
