@@ -1,3 +1,7 @@
 db/log.db
+<<<<<<< HEAD
 venv/
 __pycache__/
+=======
+venv/
+>>>>>>> origin/master
