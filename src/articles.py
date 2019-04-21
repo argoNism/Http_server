@@ -33,6 +33,17 @@ def add_article(article: Article):
         print("sqlite3.OperationalError:", e)
 
 def add_tag(str):
+    try:
+        conn = sqlite3.connect('db/articles.db')
+        c = conn.cursor()
+        c.execute("insert into tags(name) values (?)", (str))
+        conn.commit()
+        print("add tags", str)
+
+    except sqlite3.OperationalError as e:
+        print("sqlite3.OperationalError:", e)
+
+
     pass
 
 
