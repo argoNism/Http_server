@@ -3,12 +3,12 @@ import ssl
 import worker_thread
 import threading
 
-# HOST = "118.27.0.160"
-HOST = "localhost"
-HTTP = 8000
+HOST = "118.27.0.160"
+#HOST = "localhost"
+HTTP = 80
 HTTPS = 443
-DOCUMENT_ROOT = "/Users/usubasatsukifutoshi/Projects/SimpleWebServer/server/www"
-#DOCUMENT_ROOT = "/home/argon/server/www"
+#DOCUMENT_ROOT = "/Users/usubasatsukifutoshi/Projects/SimpleWebServer/server/www"
+DOCUMENT_ROOT = "/home/argon/server/www"
 CRT = '/etc/letsencrypt/live/argonism.info/cert.pem'
 KEY = '/etc/letsencrypt/live/argonism.info/privkey.pem'
 protocolVersion = "HTTP/1.1"
@@ -95,5 +95,5 @@ def receive_http():
 if __name__ == "__main__":
     http = threading.Thread(target=receive_http)
     http.start()
-    # main()
+    main()
 

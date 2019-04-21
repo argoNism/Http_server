@@ -29,9 +29,12 @@ class Logger:
 
     @classmethod
     def add_row(self, msg, ip, request):
-        conn = sqlite3.connect('db/log.db')
-        c = conn.cursor()
-        logger = Logger(msg, ip, request)
-        c.execute("insert into log (host, ip, request) values (?,?,?)", (logger.host_name, logger.ip, logger.request))
-        conn.commit()
-        print("save log", (logger.host_name, logger.ip, logger.request))
+        try:
+            conn = sqlite3.connect('db/log.db')
+            c = conn.cursor()
+            logger = Logger(msg, ip, request)
+            c.execute("insert into log (host, ip, request) values (?,?,?)", (logger.host_name, logger.ip, logger.request))
+            conn.commit()
+            print("save log", (logger.host_name, logger.ip, logger.request))
+        except sqlite3.OperationalError as e:
+            print("sqlite3.OperationalError:",e)
