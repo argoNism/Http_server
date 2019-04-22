@@ -50,11 +50,14 @@ def send_response(sock: socket, response: Response) -> None:
 
     response_msg.add_message_line("")
 
-    if response.headers["Content-Type"] in utf8_map:
-        write_body_text(response_msg, response, 'utf-8')
-    elif response.headers["Content-Type"] in rb_map:
-        write_body_image(response_msg, response, 'rb')
+    if "Content-Type" in response.headers:
+        if response.headers["Content-Type"] in utf8_map:
+            write_body_text(response_msg, response, 'utf-8')
+        elif response.headers["Content-Type"] in rb_map:
+            write_body_image(response_msg, response, 'rb')
+        else:
+            write_body_image(response_msg , response, 'rb')
     else:
-        write_body_image(response_msg , response, 'rb')
+        write_body_text(response_msg, response, 'utf-8')
 
     sock.send(response_msg.message)
