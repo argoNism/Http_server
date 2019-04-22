@@ -43,7 +43,7 @@ def main():
                 print("ssl.SSLError: " + str(e))
 
                 with open("errorlog.txt", "w") as file:
-                    file.write(e)
+                    file.write(str(e)
 
         #デバック用。一回リクエストを受け取って終わる
         # while True:
