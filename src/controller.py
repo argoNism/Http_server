@@ -46,19 +46,20 @@ class NormalController(BaseController):
 
         # make responce object so determine states code
         #指定されたuriのファイルが存在するか確認
-        if os.path.exists(os.path.join(main.DOCUMENT_ROOT, self.path)) and os.path.isfile(os.path.join(main.DOCUMENT_ROOT, path)):
+        if os.path.exists(os.path.join(main.DOCUMENT_ROOT, self.path)) and os.path.isfile(os.path.join(main.DOCUMENT_ROOT, self.path)):
             self.response = Response(main.protocolVersion, States.OK)
-            self.response.body = os.path.join(main.DOCUMENT_ROOT, path)
+            self.response.body = os.path.join(main.DOCUMENT_ROOT, self.path)
 
         #ファイルが見つからない時、not_found.htmlを送信
         else:
-            path = path.rstrip("/") if path.endswith("/") else path
+            self.path = self.path.rstrip("/") if self.path.endswith("/") else self.path
             self.response = Response(main.protocolVersion, States.Not_Found)
             self.response.body = os.path.join(main.DOCUMENT_ROOT, "not_found.html")
             self.ext = "html"
+            self.response.add_header("Content-Type", content_type.get_content_text(self.ext))
 
-        self.response.add_header("Content-Type", content_type.get_content_text(self.ext))
         return self.response
+
 
 # class BlogController(BaseController):
 #     def __init__(self):
