@@ -1,6 +1,7 @@
 import re
 from datetime import datetime
 import sys
+import os
 
 class TemplateEngine:
 
@@ -19,12 +20,21 @@ class TemplateEngine:
 
 
     def __init__(self, body: str, template_name):
-        with open("template/" + template_name + ".html") as f:
-            self.template = f.read()
+	try:
+	    if os.path.exists("template/" + template_name + ".html")
+		with open("template/" + template_name + ".html") as f:
+	    　　self.template = f.read()
 
-        self.body = body
+	    　　self.body = body
 
-        self.init()
+            　　self.init()
+	    else:
+		print("there is no such template")
+		return ""
+
+	except:
+	　　print("fail to read template file")
+	    return ""
 
     def render(self):
         result = self.template
