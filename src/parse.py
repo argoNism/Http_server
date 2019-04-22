@@ -69,6 +69,7 @@ def coroutine(msg: str):
     print("step in colution")
     lines = msg.splitlines()
     if lines:
+        print("lines[0]:", lines[0])
         yield lines[0]
     else:
         yield None

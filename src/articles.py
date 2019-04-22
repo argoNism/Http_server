@@ -48,12 +48,11 @@ def get_articles(count=0):
     try:
         conn = sqlite3.connect('db/articles.db')
         c = conn.cursor()
-	    if count <= 0:
+        if count <= 0:
 	        c.execute("select * from articles")
-	    else:
+        else:
             c.execute("select * from articles limit ?", (count))
-
-	    return c.fetchall()
+        return c.fetchall()
 
     except sqlite3.OperationalError as e:
         print("sqlite3.OperationalError:", e)
@@ -65,12 +64,12 @@ def get_titles(with_id=True):
     try:
         conn = sqlite3.connect('db/articles.db')
         c = conn.cursor()
-	    if with_id:
+        if with_id:
 	        c.execute("select id, title from articles")
-	    else:
+        else:
 	        c.execute("select title from articles")
         
-	    return c.fetchall()
+        return c.fetchall()
 
     except sqlite3.OperationalError as e:
         print("sqlite3.OperationalError:", e)
