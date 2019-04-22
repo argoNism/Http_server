@@ -44,18 +44,9 @@ def main():
 
                 with open("errorlog.txt", "w") as file:
                     file.write(str(e))
-
-        #デバック用。一回リクエストを受け取って終わる
-        # while True:
-        #     try:
-        #         server = ctx.wrap_socket(server);
-        #         client_socket, client_address = server.accept()
-        #         print("accepted")
-        #         thread = worker_thread.WorkerThread(client_socket)
-        #         thread.start()
-        #         print("started thead")
-        #     finally:
-        #         break
+            finally:
+                wraped_socket.shutdown(socket.SHUT_RDWR)
+                wraped_socket.close()
     
     finally:
         server.close()
@@ -75,21 +66,7 @@ def receive_http():
             client_socket, client_address = server.accept()
             print("80 accepted")
             common(client_socket, client_address)
-            # thread = worker_thread.WorkerThread(client_socket)
-            # thread.start()
             print("80 thread started")
-
-            #デバック用。一回リクエストを受け取って終わる
-            # while True:
-            #     try:
-            #         server = ctx.wrap_socket(server);
-            #         client_socket, client_address = server.accept()
-            #         print("accepted")
-            #         thread = worker_thread.WorkerThread(client_socket)
-            #         thread.start()
-            #         print("started thead")
-            #     finally:
-            #         break
 
     finally:
         server.close()
