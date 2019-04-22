@@ -3,6 +3,7 @@ from datetime import datetime
 import sys
 import os
 import errors
+import articles
 
 class TemplateEngine:
 
@@ -19,8 +20,8 @@ class TemplateEngine:
         '%font(\d+)\((.*)\)'
     }
 
-    def __init__(self, body: str, template_name):
-        self.body = body
+    def __init__(self, article: articles.Article, template_name):
+        self.article = article
         self.template_name = template_name
         
 
