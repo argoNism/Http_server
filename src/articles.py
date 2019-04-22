@@ -44,15 +44,30 @@ def add_tag(str):
         print("sqlite3.OperationalError:", e)
 
 # get articles from database. count var is number of row. if count is under 0, return all results.
-def get_articles(count=0):
+# if you set title, you can get one article.
+def get_articles(title="", count=0) -> list:
     try:
         conn = sqlite3.connect('db/articles.db')
         c = conn.cursor()
-        if count <= 0:
-	        c.execute("select * from articles")
+        if title:
+            c.execute("select * from articles where title = ?", (title))
+            # リストの〇番目にまとまってる
+            result = c.fetchall()
+            result = result[0]
+            
+            article = article.Article()
+            article.title = result[1]
+            article.body = result[2]
+            article.time =  result[3]
+
+            return article
+
         else:
-            c.execute("select * from articles limit ?", (count))
-        return c.fetchall()
+            if count <= 0:
+                c.execute("select * from articles")
+            else:
+                c.execute("select * from articles limit ?", (count))
+            return c.fetchall()
 
     except sqlite3.OperationalError as e:
         print("sqlite3.OperationalError:", e)

@@ -1,4 +1,4 @@
-from controller import Controller
+from controller import NormalController
 
-def route(request) -> Controller:
-    return Controller()
+def route(request) -> NormalController:
+    return NormalController()

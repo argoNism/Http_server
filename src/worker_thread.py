@@ -2,7 +2,7 @@ import threading
 import parse
 from request import Request
 from response import Response
-from controller import Controller
+from controller import NormalController
 import route
 import logger
 import send_response
@@ -45,7 +45,7 @@ class WorkerThread(threading.Thread):
             return None
         logger.Logger.add_row(msg, self.client_address, request)
 
-        controller: Controller = route.route(request)
+        controller: NormalController = route.route(request)
         response: Response = controller.do_get(request)
 
         return response

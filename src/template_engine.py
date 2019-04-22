@@ -2,6 +2,7 @@ import re
 from datetime import datetime
 import sys
 import os
+import errors
 
 class TemplateEngine:
 
@@ -18,35 +19,47 @@ class TemplateEngine:
         '%font(\d+)\((.*)\)'
     }
 
-
     def __init__(self, body: str, template_name):
-	try:
-	    if os.path.exists("template/" + template_name + ".html")
-		with open("template/" + template_name + ".html") as f:
-	    　　self.template = f.read()
+        self.body = body
+        self.template_name = template_name
+        
 
-	    　　self.body = body
+    def get_template(self, template_name):
+        try:
+            if os.path.exists("template/" + template_name + ".html"):
+                with open("template/" + template_name + ".html") as f:
+                    return f.read()
+            else:
+                raise errors.GetTemplateError("There is no such a" + template_name)
 
-            　　self.init()
-	    else:
-		print("there is no such template")
-		return ""
-
-	except:
-	　　print("fail to read template file")
-	    return ""
+        except errors.GetTemplateError as e:
+            raise e
+        except:
+            raise errors.GetTemplateError("Fail to read template file")
+        
 
     def render(self):
-        result = self.template
+        try:
+            self.template = self.get_template(self.template_name)
+        except errors.GetTemplateError as e:
+            print(e)
+            raise e
+        try:
+            result = self.template
 
-        for k, v in self.patterns.items():
-            result = result.replace(k, v)
+            self.init()
 
-        return result
+            for k, v in self.patterns.items():
+                result = result.replace(k, v)
+
+            return result
+        except:
+            raise errors.TemplateRenderingError("fail to render template")
+
 
     def init(self):
         with open("template/input.txt") as f:
-            input_file = f.read()
+                input_file = f.read()
 
         with open("template/body.txt") as f:
             body_txt = f.read()
