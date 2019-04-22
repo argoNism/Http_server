@@ -60,16 +60,16 @@ class NormalController(BaseController):
         self.response.add_header("Content-Type", content_type.get_content_text(self.ext))
         return self.response
 
-class BlogController(BaseController):
-    def __init__(self):
-        pass
+# class BlogController(BaseController):
+#     def __init__(self):
+#         pass
     
-    def do_get(self, request):
-        super().do_get(request)
-        head, tail = os.path.split(self.path)
-        article = articles.add_article(tail)
+#     def do_get(self, request):
+#         super().do_get(request)
+#         head, tail = os.path.split(self.path)
+#         article = articles.add_article(tail)
 
-        if article:
+#         if article:
             
 
     # def format_path(self, path) -> str:
