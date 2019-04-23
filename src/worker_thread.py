@@ -31,6 +31,7 @@ class WorkerThread(threading.Thread):
                 send_response.send_response(self.sock,response)
             else:
                 pass
+            byte_msg = ""
 
 
     def handle_request(self, msg) -> Response:
