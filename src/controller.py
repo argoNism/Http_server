@@ -56,7 +56,8 @@ class NormalController(BaseController):
             self.response = Response(main.protocolVersion, States.Not_Found)
             self.response.body = os.path.join(main.DOCUMENT_ROOT, "not_found.html")
             self.ext = "html"
-            self.response.add_header("Content-Type", content_type.get_content_text(self.ext))
+            
+        self.response.add_header("Content-Type", content_type.get_content_text(self.ext))
 
         return self.response
 

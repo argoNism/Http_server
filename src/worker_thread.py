@@ -18,10 +18,11 @@ class WorkerThread(threading.Thread):
 
         print("step in try")
         byte_msg = self.sock.recv(1024)
-        sum_msg　＝　""
+        sum_msg　=　""
 
         while byte_msg:
             sum_msg += byte_msg.decode('utf-8')
+            byte_msg = ""
 
         print("request length:", len(sum_msg))
 
