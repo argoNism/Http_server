@@ -44,9 +44,6 @@ def main():
 
                 with open("errorlog.txt", "w") as file:
                     file.write(str(e))
-            finally:
-                wraped_socket.shutdown(socket.SHUT_RDWR)
-                wraped_socket.close()
     
     finally:
         server.close()
