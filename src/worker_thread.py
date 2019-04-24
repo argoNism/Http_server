@@ -19,19 +19,18 @@ class WorkerThread(threading.Thread):
         sum_msg = ""
         byte_msg = self.sock.recv(1024)
 
-        while byte_msg:
-            sum_msg += byte_msg.decode('utf-8')
-            print("request:", sum_msg)
-            print("request length:", len(sum_msg))
+        sum_msg += byte_msg.decode('utf-8')
+        print("request:", sum_msg)
+        print("request length:", len(sum_msg))
 
-            response: Response = self.handle_request(sum_msg)
+        response: Response = self.handle_request(sum_msg)
 
-            if response:
-                send_response.send_response(self.sock,response)
-            else:
-                pass
+        if response:
+            send_response.send_response(self.sock,response)
+        else:
+            pass
 
-            byte_msg = self.sock.recv(1024)
+        byte_msg = self.sock.recv(1024)            
 
         self.sock.close()
 
