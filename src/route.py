@@ -1,4 +1,11 @@
 from controller import NormalController
+from controller import ArticleController
+import os
 
-def route(request) -> NormalController:
-    return NormalController()
+def route(request):
+    head, tail = os.path.split(request.target)
+    
+    if request.target.startswith("/blog/"):
+        return ArticleController()
+    else:
+        return NormalController()

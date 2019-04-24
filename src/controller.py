@@ -5,6 +5,7 @@ from response import Response
 import content_type
 from http_state import States
 import articles
+from template_engine import TemplateEngine
 
 class BaseController:
 
@@ -18,7 +19,6 @@ class BaseController:
         self.ext = self.ext.lstrip(".")
 
         self.path = self.format_path(self.path)
-
 
     def format_path(self, path) -> str:
         #ディレクトリトラバーサル対策
@@ -34,6 +34,15 @@ class BaseController:
             path = path.lstrip("/")
 
         return path
+    
+    def not_found(self):
+        # self.path = self.path.rstrip("/") if self.path.endswith("/") else self.path
+        response = Response(main.protocolVersion, States.Not_Found)
+        response.body = os.path.join(main.DOCUMENT_ROOT, "not_found.html")
+        self.ext = "html"
+
+        return response
+
 
 class NormalController(BaseController):
 
@@ -52,12 +61,36 @@ class NormalController(BaseController):
 
         #ファイルが見つからない時、not_found.htmlを送信
         else:
-            self.path = self.path.rstrip("/") if self.path.endswith("/") else self.path
-            self.response = Response(main.protocolVersion, States.Not_Found)
-            self.response.body = os.path.join(main.DOCUMENT_ROOT, "not_found.html")
-            self.ext = "html"
+            self.response = self.not_found()
             
         self.response.add_header("Content-Type", content_type.get_content_text(self.ext))
+
+        return self.response
+
+
+class ArticleController(BaseController):
+    def __init__(self):
+        pass
+    
+    def do_get(self, request):
+        super().do_get(request)
+        head, tail = os.path.split(self.path)
+        if tail:
+            article = articles.get_articles(tail)
+
+            if article:
+                engine = TemplateEngine(article, "template")
+                self.response = Response(main.protocolVersion, States.OK)
+                self.response.body = engine.render()
+
+            else:
+                self.response = self.not_found()
+
+        else:
+            self.response = Response(main.protocolVersion, States.Not_Found)
+            self.response.body = os.path.join(main.DOCUMENT_ROOT, "blog.html")
+            self.ext = "html"
+
 
         return self.response
 
@@ -69,22 +102,21 @@ class NormalController(BaseController):
 #     def do_get(self, request):
 #         super().do_get(request)
 #         head, tail = os.path.split(self.path)
-#         article = articles.add_article(tail)
+#         if tail:
+#             article = articles.get_articles(tail)
 
-#         if article:
-            
+#             if article:
+#                 engine = TemplateEngine(article, "template")
+#                 self.response = Response(main.protocolVersion, States.OK)
+#                 self.response.body = engine.render()
 
-    # def format_path(self, path) -> str:
-    #     #ディレクトリトラバーサル対策
-    #     if (not path.find("..") == -1):
-    #         path = "index.html"
+#             else:
+#                 self.response = self.not_found()
 
-    #     if (path.endswith("/")):
-    #         path = path + "index.html"
-    #         self.ext = "html"
+#         else:
+#             self.response = Response(main.protocolVersion, States.Not_Found)
+#             self.response.body = os.path.join(main.DOCUMENT_ROOT, "blog.html")
+#             self.ext = "html"
 
-    #         # 受け取ったpath
-    #     if (path.startswith("/")):
-    #         path = path.lstrip("/")
 
-    #     return path
+#         return self.response

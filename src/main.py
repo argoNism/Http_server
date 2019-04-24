@@ -34,16 +34,19 @@ def main():
             try:
                 wraped_socket = ctx.wrap_socket(client_socket, server_side=True)
                 print("socket wrapped")
-                common(wraped_socket, client_address)
-                # thread = worker_thread.WorkerThread(wraped_socket)
-                # thread.start()
-                print("443 thread started")
 
             except ssl.SSLError as e:
                 print("ssl.SSLError: " + str(e))
 
                 with open("errorlog.txt", "w") as file:
                     file.write(str(e))
+                wrap_socket.close()
+                
+            else:
+                common(wraped_socket, client_address)
+                # thread = worker_thread.WorkerThread(wraped_socket)
+                # thread.start()
+                print("443 thread started")
     
     finally:
         server.close()

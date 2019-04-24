@@ -15,15 +15,15 @@ class WorkerThread(threading.Thread):
 
     def run(self):
         print("run started")
-
-        print("step in try")
+        
+        sum_msg = ""
         byte_msg = self.sock.recv(1024)
-        sum_msg　=　""
 
         while byte_msg:
             sum_msg += byte_msg.decode('utf-8')
-            byte_msg = ""
+            byte_msg = self.sock.recv(1024)
 
+        print("request:", sum_msg)
         print("request length:", len(sum_msg))
 
         response: Response = self.handle_request(sum_msg)
@@ -32,6 +32,8 @@ class WorkerThread(threading.Thread):
             send_response.send_response(self.sock,response)
         else:
             pass
+        
+        self.sock.close()
 
 
     def handle_request(self, msg) -> Response:
