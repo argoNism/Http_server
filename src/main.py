@@ -40,7 +40,9 @@ def main():
 
                 with open("errorlog.txt", "w") as file:
                     file.write(str(e))
-                wrap_socket.close()
+
+                # wrap_socket.close()
+                # print("close socket")
                 
             else:
                 common(wraped_socket, client_address)
