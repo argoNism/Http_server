@@ -2,6 +2,7 @@ import socket
 import ssl
 import worker_thread
 import threading
+from traceback import *
 
 #HOST = "118.27.0.160"
 HOST = "localhost"
@@ -38,14 +39,13 @@ def main():
                 print("443 thread started")
 
             except ssl.SSLError as e:
-                print("ssl.SSLError: " + str(e))
+                # tracebackオブジェクトの取得
+                tb = sys.exc_info()[2]
+                with open('errorlog.log', 'a') as f:
+                    print_tb(tb, file=f)
 
-                with open("errorlog.txt", "w") as file:
-                    file.write(str(e))
-                    print(e)
-
-                wrap_socket.close()
-                print("close socket")
+                wraped_socket.close()
+                print("socket closed")
     
     finally:
         server.close()
