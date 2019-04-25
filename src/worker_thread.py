@@ -30,8 +30,6 @@ class WorkerThread(threading.Thread):
         else:
             pass
 
-        byte_msg = self.sock.recv(1024)            
-
         self.sock.close()
 
 

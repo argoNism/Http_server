@@ -8,4 +8,5 @@ def route(request):
     if request.target.startswith("/blog/"):
         return ArticleController()
     else:
+        print("give a NormalController")
         return NormalController()
