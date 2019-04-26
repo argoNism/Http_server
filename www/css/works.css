@@ -22,6 +22,11 @@
     display: flex;
 }
 
+section {
+    padding-bottom: 30px;
+    border-bottom: #ddd 1px solid;
+}
+
 .bot-shooter .photo {
     min-height: 200px;
     background-image: url(../img/BotShooter_image.png);
@@ -58,6 +63,24 @@
 }
 
 .same .description {
+    flex: 2;
+    padding: 50px;
+}
+
+.bot {
+    /* flex-direction: row-reverse; */
+}
+
+.bot .photo {
+    min-height: 200px;
+    background-image: url(../img/karahaji_head.png);
+    background-position: center;
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex: 3;
+}
+
+.bot .description {
     flex: 2;
     padding: 50px;
 }
