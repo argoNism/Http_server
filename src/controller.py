@@ -58,7 +58,7 @@ class NormalController(BaseController):
         if os.path.exists(os.path.join(main.DOCUMENT_ROOT, self.path)) and os.path.isfile(os.path.join(main.DOCUMENT_ROOT, self.path)):
             self.response = Response(main.protocolVersion, States.OK)
             self.response.body = os.path.join(main.DOCUMENT_ROOT, self.path)
-
+            print("response:", os.path.join(main.DOCUMENT_ROOT, self.path))
         #ファイルが見つからない時、not_found.htmlを送信
         else:
             self.response = self.not_found()

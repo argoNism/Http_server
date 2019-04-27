@@ -55,26 +55,20 @@ def parse_request(msg: str):
     request_body = next(lines)
     print("request-body:", request_body)
 
-    print("*** parse request line")
     request = parse_requestline(request_line, request)
 
-    print("*** parse header lines")
     request = parse_header(request_header, request)
-    print(request.headers)
 
     return request
 
 
 def coroutine(msg: str):
-    print("step in colution")
     lines = msg.splitlines()
     if lines:
-        print("lines[0]:", lines[0])
         yield lines[0]
     else:
         yield None
 
-    print("to headers")
     headers = []
     body = []
     body_linenum = 0
@@ -85,7 +79,6 @@ def coroutine(msg: str):
         headers.append(line)
     yield headers
 
-    print("")
     for i, line in enumerate(lines[body_linenum:]):
         body.append(line)
 
