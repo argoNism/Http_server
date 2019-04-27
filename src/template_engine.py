@@ -4,6 +4,7 @@ import sys
 import os
 import errors
 import articles
+import replace_engine
 
 class TemplateEngine:
 
@@ -11,7 +12,7 @@ class TemplateEngine:
     body_pat = r'%body\((.*|<br>)\)'
 
     patterns = {
-        '%(time-stamp)': datetime.now().strftime("%Y/%m/%d"),
+        '%(time-stamp)': '',
         '%(title)': '',
         '%(body)': '',
     }
@@ -27,8 +28,8 @@ class TemplateEngine:
 
     def get_template(self, template_name):
         try:
-            if os.path.exists("../template/" + template_name + ".html"):
-                with open("../template/" + template_name + ".html") as f:
+            if os.path.exists("../www/" + template_name + ".html"):
+                with open("../www/" + template_name + ".html") as f:
                     return f.read()
             else:
                 raise errors.GetTemplateError("There is no such a " + template_name)
@@ -46,26 +47,32 @@ class TemplateEngine:
         except errors.GetTemplateError as e:
             print(e)
             raise e
+        result = self.set_template_assigns(self.template)
 
-        try:
-            result = self.template
+        self.init_pattern()
 
-            self.init()
+        for k, v in self.patterns.items():
+            result = result.replace(k, v)
 
-            for k, v in self.patterns.items():
-                result = result.replace(k, v)
+        return result
 
-            return result
-        except:
-            raise errors.TemplateRenderingError("Fail to render template.")
+        # try:
+            
+        # except:
+        #     raise errors.TemplateRenderingError("Fail to render template.")
 
     # 置き換える文字を抽出する（エディた実装後は不要のはず（個別に受け取ることがぜんていになるから。）
-    def init(self):
+    def init_pattern(self):
         # matchとsearchの使い分けに注意
+        self.patterns['%(time-stamp)'] = self.article.created_at
         self.patterns['%(title)'] = self.article.title
         self.patterns['%(body)'] = self.article.body
 
-        print(self.patterns)
+    def set_template_assigns(self, template):
+        result = replace_engine.set_latest(template)
+        result = replace_engine.set_tags(result, self.article.tags)
+        return result
+
 
 def main():
     with open("../template/input.txt") as f:
@@ -80,5 +87,8 @@ def main():
     print(temp.render())
 
 
-if __name__ == "__main__":
-    main()
+# if __name__ == "__main__":
+#     article = articles.Article("タイトルの2", "ぼでーの1", ["aaa", "C#", "プログラミング", "強プロ"], created_at="000000")
+#     print(len(article.tags))
+#     temp = TemplateEngine(article, "template")
+#     print(temp.render())

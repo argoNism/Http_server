@@ -67,19 +67,40 @@ def render(template, pairs):
         raise errors.TemplateRenderingError("Fail to replaces.")
 
 def set_latest(template, count=5):
-    style = '<li><a href="#"><i class="fas fa-angle-right"></i>頭が痒くない今日この頃</a></li>'
+    style = '<li><a href="%(link)"><i class="fas fa-angle-right"></i>%(title)</a></li>'
     
     conn = sqlite3.connect("../db/articles.db")
     c = conn.cursor()
-    c.execute("select * form articles order by ")
-    template = template.replace(%(latest), )
+    c.execute("select * from articles order by created_at limit ?", (str(count)))
+    li_list = ""
+    # c.fetchall() -> 一つの要素が、カラムになってるリスト
+    for column in c.fetchall():
+        temp = style.replace("%(title)", column[1])
+        temp = temp.replace("%(link)", "blog/" + column[1])
+        li_list += (temp + '\n')
 
-if __name__ == "__main__":
-    pairs = {
-        '%(time-stamp)': datetime.now().strftime("%Y/%m/%d"),
-        '%(title)': 'タイトルのテストfrom replace_engine',
-        '%(body)': 'ボディのテスト',
-    }
+    return template.replace("%(latest)", li_list)
 
-    with open("../template/template.html") as file:
-        print(render(file.read(), pairs))
+def set_tags(template, tags):
+    style = '<li>%(tag)</li>'
+    li_list = ""
+    # c.fetchall() -> 一つの要素が、カラムになってるリスト
+    for tag in tags:
+        temp = style.replace("%(tag)", tag)
+        li_list += (temp + '\n')
+
+    return template.replace("%(tags)", li_list)
+
+
+# if __name__ == "__main__":
+#     with open("../template/template.html") as file:
+#         print(set_latest(file.read()))
+        
+    # pairs = {
+    #     '%(time-stamp)': datetime.now().strftime("%Y/%m/%d"),
+    #     '%(title)': 'タイトルのテストfrom replace_engine',
+    #     '%(body)': 'ボディのテスト',
+    # }
+
+    # with open("../template/template.html") as file:
+    #     print(render(file.read(), pairs))

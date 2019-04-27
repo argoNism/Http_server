@@ -4,144 +4,100 @@
     --nav-opacity: opacity(0.4);
 }
 
-body {
-    color: #333;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+
+/* メイン */
+
+.main h2 , p{
     margin: 0;
 }
 
-/* タイトル */
-header h1 {
-    margin: 1vw;
-    font-size: 5vw;
-    font-family: 'Montserrat', sans-serif;
-    /* 1em = フォントサイズ、　フォントが115pxのとき、0.2em = 23px */
-    letter-spacing: 0.2em;
-    /* 右端にもスペースが追加されるため、左端に同じ幅をとって左右均等に */
+.main section {
+    border-bottom: solid 1px #333;
+    margin-bottom: 50px;
 }
 
-header img {
-    margin: 2vw 0vw 0vw 2vw;
+.main .time-stamp {
+    font-size: 14px;
+    color: #aaa;
 }
 
-header a {
-    color: var(--title-color);
-    text-decoration-line: none;
+.main h2 {
+    margin-bottom: 15px;
+}
+
+
+.main section .article  {
+    margin-bottom: 20px;
 }
 
 @media (min-width: 768px) {
 
-    header img {
-        width: 30%;  
+    .main {
+        padding-top: 30px;
+        display: flex;
+        max-width: var(--large-width);
+        margin: 0px auto;
+    }
+    
+    .main section {
+        flex: 4;
+        padding-right: 15px;
+    }
+    
+    .main aside {
+        flex: 1;
     }
 }
 
-@media (max-width: 768px) {
 
-    header img {
-        width: 100%;  
-    }
-}
 
-/* ヘッダーナビ */
-.head_nav ul {
-    margin: 0;
+/* タグ */
+.tags {
+    margin: 10px 0px;
     padding: 0;
     list-style: none;
 }
 
-/* .head_nav a {
-    display: block;
-    padding: 15px;
-    color: inherit;
-    height: 30px;
-    width: 100%;
-} */
-
-.head_nav a {
-    display: block;
-    padding: 0px 15px;
-    color: inherit;
-    height: 3vw;
-    width: 100%;
+.tags li {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+    border: #aaa 1px solid;
+    display: inline;
+    padding: 2px;
+    border-radius: 5px;
 }
 
-.head_nav a:hover {
-    -webkit-filter: var(--nav-opacity);
-    -moz-filter: var(--nav-opacity);
-    -o-filter: var(--nav-opacity);
-    -ms-filter: var(--nav-opacity);
-    filter: var(--nav-opacity);
+
+
+/* 最近の記事 */
+aside {
+    margin-left: 20px;
 }
 
-header nav div {
+aside ul {
+    margin: 8px 0px;
+    padding-left: 0px;
+    list-style: none;
+}
+
+aside p {
+    font-size: 18px;
     border-bottom: solid 1px #333;
 }
 
-.head_nav .about {
-    height: 100%;
-    background-image: url(../img/about.png);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
+aside a {
+    display: block;
+    color: inherit;
+    text-decoration-line: none;
 }
 
-.head_nav .works {
-    height: 100%;
-    background-image: url(../img/works.png);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
+aside a:hover {
+    color: #ddd;
 }
 
-.head_nav nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 1000px;
-    max-width: var(--large-width);
-    margin-left: auto;
-    margin-right: auto;   
-    height: 10vw;  
-}
-
-.nav div {
-    width: 100px;
-    flex: 1;
-}
-
-@media (min-width: 768px) {
-
-    /* .head_nav ul {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        max-width: 1000px;
-        max-width: var(--large-width);
-        margin-left: auto;
-        margin-right: auto;   
-    }
-
-    .head_nav li {
-        flex: 1;
-        text-align: center;
-    } */
-
-    /* .head_nav nav {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        max-width: 1000px;
-        max-width: var(--large-width);
-        margin-left: auto;
-        margin-right: auto;   
-        height: 10vw;  
-    }
-
-    .nav div {
-        width: 100px;
-        flex: 1;
-    } */
+aside a i {
+    padding: 0px 5px 4px 5px;
 }
 
 /* フッター */
@@ -184,75 +140,3 @@ footer a {
         padding: 10px 0px; */
     }
 }
-
-/* メイン */
-
-.main h2 , p{
-    margin: 0;
-}
-
-.main section {
-    border-bottom: solid 1px #333;
-    margin-bottom: 50px;
-}
-
-.main .time-stamp {
-    font-size: 14px;
-    color: #aaa;
-}
-
-.main h2 {
-    margin-bottom: 15px;
-}
-
-.main section .article  {
-    margin-bottom: 20px;
-}
-
-
-
-@media (min-width: 768px) {
-
-    .main {
-        padding-top: 30px;
-        display: flex;
-        max-width: var(--large-width);
-        margin: 0px auto;
-    }
-    
-    .main section {
-        flex: 3;
-        padding-right: 15px;
-    }
-    
-    .main aside {
-        flex: 1;
-    }
-}
-
-/* 最近の記事 */
-aside ul {
-    margin: 8px 0px;
-    padding-left: 0px;
-    list-style: none;
-}
-
-aside p {
-    font-size: 18px;
-    border-bottom: solid 1px #333;
-}
-
-aside a {
-    display: block;
-    color: inherit;
-    text-decoration-line: none;
-}
-
-aside a:hover {
-    color: #ddd;
-}
-
-aside a i {
-    padding-right: 5px;
-}
-

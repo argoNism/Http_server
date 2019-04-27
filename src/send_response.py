@@ -28,14 +28,14 @@ class ResponseMessageLine():
             self.message += msg.encode('utf-8') + b"\n"
         # self.message += msg + "\n"
 
-def write_body_text(message_line, response, encoding: str):
+# def write_body_text(message_line, response, encoding: str):
 
-    with open(response.body, encoding=encoding) as file:
-        message_line.add_message_line(file.read())
+#     with open(response, encoding=encoding) as file:
+#         message_line.add_message_line(file.read())
 
-def write_body_image(message_line, response, mode: str):
-    with open(response.body, mode=mode) as file:
-        message_line.add_message_line(file.read())
+# def write_body_image(message_line, response, mode: str):
+#     with open(response.body, mode=mode) as file:
+#         message_line.add_message_line(file.read())
 
 
 #ResponseMessageLine にstrを追加していって、最後にencodeしたやつを送る
@@ -50,14 +50,16 @@ def send_response(sock: socket, response: Response) -> None:
 
     response_msg.add_message_line("")
 
-    if "Content-Type" in response.headers:
-        if response.headers["Content-Type"] in utf8_map:
-            write_body_text(response_msg, response, 'utf-8')
-        elif response.headers["Content-Type"] in rb_map:
-            write_body_image(response_msg, response, 'rb')
-        else:
-            write_body_image(response_msg , response, 'rb')
-    else:
-        write_body_text(response_msg, response, 'utf-8')
+    response_msg.add_message_line(response.body)
+
+    # if "Content-Type" in response.headers:
+    #     if response.headers["Content-Type"] in utf8_map:
+    #         response_msg.add_message_line(response_msg, 'utf-8')
+    #     elif response.headers["Content-Type"] in rb_map:
+    #         response_msg.add_message_line(response_msg, 'rb')
+    #     else:
+    #         response_msg.add_message_line(response_msg, 'rb')
+    # else:
+    #     response_msg.add_message_line(response_msg, 'utf-8')
 
     sock.send(response_msg.message)

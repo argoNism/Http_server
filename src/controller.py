@@ -7,6 +7,14 @@ from http_state import States
 import articles
 from template_engine import TemplateEngine
 
+utf8_map =[
+    "html", "css", "plane", "javascript"
+]
+
+rb_map = [
+    "png", "jpeg", "jpeg", "gif", "vnd.microsoft.icon"
+]
+
 class BaseController:
 
     def __init__(self):
@@ -35,6 +43,19 @@ class BaseController:
 
         return path
     
+    def open_files(self, path, ext: str):
+        if ext in utf8_map:
+            with open(path, encoding='utf-8') as file:
+                return file.read()
+
+        elif ext in rb_map:
+            with open(path, mode='rb') as file:
+                return file.read()
+
+        else:
+            with open(path, encoding='utf-8') as file:
+                return file.read()
+    
     def not_found(self):
         # self.path = self.path.rstrip("/") if self.path.endswith("/") else self.path
         response = Response(main.protocolVersion, States.Not_Found)
@@ -57,8 +78,8 @@ class NormalController(BaseController):
         #指定されたuriのファイルが存在するか確認
         if os.path.exists(os.path.join(main.DOCUMENT_ROOT, self.path)) and os.path.isfile(os.path.join(main.DOCUMENT_ROOT, self.path)):
             self.response = Response(main.protocolVersion, States.OK)
-            self.response.body = os.path.join(main.DOCUMENT_ROOT, self.path)
-            print("response:", os.path.join(main.DOCUMENT_ROOT, self.path))
+            self.response.body = self.open_files(os.path.join(main.DOCUMENT_ROOT, self.path) ,self.ext)
+            print("responce body:",self.response.body)
         #ファイルが見つからない時、not_found.htmlを送信
         else:
             self.response = self.not_found()
