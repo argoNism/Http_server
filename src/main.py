@@ -39,10 +39,15 @@ def main():
                 print("443 thread started")
 
             except ssl.SSLError as e:
-                # tracebackオブジェクトの取得
-                tb = sys.exc_info()[2]
                 with open('errorlog.log', 'a') as f:
-                    print_tb(tb, file=f)
+                    f.write(e)
+
+                wraped_socket.close()
+                print("socket closed")
+
+            except ssl.SSLCertVerificationError as e:
+                with open('errorlog.log', 'a') as f:
+                    f.write(e)
 
                 wraped_socket.close()
                 print("socket closed")
