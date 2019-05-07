@@ -1,4 +1,5 @@
 HTTP/1.1 200 OK
+Content-Type: application/octet-stream
 
 <!DOCTYPE html>
 <html>
@@ -6,8 +7,8 @@ HTTP/1.1 200 OK
         <meta charset="utf-8">
         <title>argonism</title>
         <link rel="icon" href="favicon.ico">
-        <link rel="stylesheet" href="css/blog_top.css">
         <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/index.css">
         <meta name="description" content="argonism profile page">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     </head>
@@ -27,36 +28,19 @@ HTTP/1.1 200 OK
         </header>
 
         <div class="main">
-            <section>
-                <ul class="articles">
-                    <li><article><div class="container"><p class="time-stamp">2019-04-27 13:52:14</p><ul class="tags"></ul><h2><i class="fas fa-square-full"></i>たいとる</h2><p class="article">ぼでー</p><a class="continue" href="blog/たいとる"><i class="fas fa-angle-right"></i>続きを読む</a></div></article></li><li><article><div class="container"><p class="time-stamp">2019-04-27 14:05:59</p><ul class="tags"></ul><h2><i class="fas fa-square-full"></i>タイトル</h2><p class="article">ぼでー</p><a class="continue" href="blog/タイトル"><i class="fas fa-angle-right"></i>続きを読む</a></div></article></li><li><article><div class="container"><p class="time-stamp">2019-04-27 13:52:14</p><ul class="tags"><li>VPS</li>
-<li>blog</li>
-<li>ゲーム</li>
-</ul><h2><i class="fas fa-square-full"></i>長さテスト</h2><p class="article">一葉は、その男の、幼年時代、とでも言うべきであろうか、十歳前後かと推定される頃の写真であって、その子...</p><a class="continue" href="blog/長さテスト"><i class="fas fa-angle-right"></i>続きを読む</a></div></article></li><li><article><div class="container"><p class="time-stamp">2019-05-01 19:50:32</p><ul class="tags"><li>blog</li>
-<li>blog</li>
-</ul><h2><i class="fas fa-square-full"></i>これはテスト用。それ以上でもそれ以下でもない。</h2><p class="article">テスト。<br><br><br>三業目<br><br><br>五業目<br><br><br><br><br>8行目</p><a class="continue" href="blog/これはテスト用。それ以上でもそれ以下でもない。"><i class="fas fa-angle-right"></i>続きを読む</a></div></article></li><li><article><div class="container"><p class="time-stamp">2019-05-01 19:52:34</p><ul class="tags"><li>blog</li>
-<li>c#</li>
-</ul><h2><i class="fas fa-square-full"></i>なぞなぞテストようのあれ</h2><p class="article">テストてすお<br>あ<br><br><br>あ<br>ああ<br>あ<br><br><br>あ<br><br><br><br><br>あ<br>あ<br>「」’’...</p><a class="continue" href="blog/なぞなぞテストようのあれ"><i class="fas fa-angle-right"></i>続きを読む</a></div></article></li>
-                </ul>
-            </section>
-            
-    
-            <aside>
-                <div class="container">
-                    <div class="latest">
-                        <p>最近の記事</p>
-                        <ul>
-                            <li><a href="blog/たいとる"><i class="fas fa-angle-right"></i>たいとる</a></li>
-<li><a href="blog/長さテスト"><i class="fas fa-angle-right"></i>長さテスト</a></li>
-<li><a href="blog/タイトル"><i class="fas fa-angle-right"></i>タイトル</a></li>
-<li><a href="blog/これはテスト用。それ以上でもそれ以下でもない。"><i class="fas fa-angle-right"></i>これはテスト用。それ以上でもそれ以下でもない。</a></li>
-<li><a href="blog/なぞなぞテストようのあれ"><i class="fas fa-angle-right"></i>なぞなぞテストようのあれ</a></li>
-
-                        </ul>
-                    </div>
-                </div>
-            </aside>
+            <p>
+                うーん、何か置きたいよね。<br>
+                トップページだし。ブラウザゲーとか置きたい。
+            </p>
         </div>
+
+        <!-- 
+            なにか見つかった？
+
+            ソースコードについて、何かアドバイスとか修正すべき点があったら、
+            是非教えて欲しいです。お手数ですが。是非。
+            (꜆꜄꜆˙꒳˙)꜆꜄꜆ｼｭｼｭｼｭｼｭｯ
+         -->
 
         <footer>
             <div class="copy">

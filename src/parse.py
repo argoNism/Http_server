@@ -27,14 +27,18 @@ def parse_header(lines, request) -> Request:
 
 def parse_body(msg, request):
     body_list = msg.split("&")
+    print("body_list", body_list)
     if body_list:
         lines = {}
         for line in body_list:
             key_value = line.split("=")
+            print("key_value", key_value)
+            if key_value:
+                break
             lines[key_value[0]] = urllib.parse.unquote(key_value[1])
 
         request.body = lines
-        
+
     return request
 
 #  最初に呼び出されるメソッド
@@ -48,14 +52,12 @@ def parse_request(msg: str):
 
     #リクエストラインを抽出
     request_line = next(lines)
-    print("request-line:", request_line)
 
     #
     if request_line is None:
         return None
 
     request_header = next(lines)
-    print("request-headers:", request_header)
 
     request_body = next(lines)
     print("request-body:", request_body)

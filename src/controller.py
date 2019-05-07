@@ -7,6 +7,8 @@ from http_state import States
 import articles
 from template_engine import TemplateEngine
 import replace_engine
+import pdb;
+
 utf8_map =[
     "html", "css", "plane", "javascript"
 ]
@@ -81,9 +83,13 @@ class NormalController(BaseController):
 
         # make responce object so determine states code
         #指定されたuriのファイルが存在するか確認
-        if os.path.exists(os.path.join(main.DOCUMENT_ROOT, self.path)) and os.path.isfile(os.path.join(main.DOCUMENT_ROOT, self.path)):
+        if not self.path:
+            self.path = "/index.html"
+
+        print(main.DOCUMENT_ROOT, self.path)
+        if os.path.exists(main.DOCUMENT_ROOT + self.path) and os.path.isfile(main.DOCUMENT_ROOT + self.path):
             self.response = Response(main.protocolVersion, States.OK)
-            self.response.body = self.open_files(os.path.join(main.DOCUMENT_ROOT, self.path) ,self.ext)
+            self.response.body = self.open_files(main.DOCUMENT_ROOT + self.path ,self.ext)
 
         #ファイルが見つからない時、not_found.htmlを送信
         else:
