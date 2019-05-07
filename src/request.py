@@ -6,6 +6,3 @@ class Request(AbstractHttpMessage.AbstractHttpMessage):
         self.type: str = ""
         self.target: str = ""
         self.version: str = ""
-
-    def get_method(self):
-        return self.meth

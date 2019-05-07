@@ -26,7 +26,7 @@ class WorkerThread(threading.Thread):
         response: Response = self.handle_request(sum_msg)
 
         if response:
-            send_response.send_response(self.sock,response)
+            send_response.send_response(self.sock, response)
         else:
             pass
 
@@ -41,8 +41,7 @@ class WorkerThread(threading.Thread):
             return None
         logger.Logger.add_row(msg, self.client_address, request)
 
-        controller: NormalController = route.route(request)
-        response: Response = controller.do_get(request)
+        response: Response = route.route(request)
 
         return response
 

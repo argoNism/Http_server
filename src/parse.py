@@ -1,9 +1,8 @@
 from request import Request
 import re
+import urllib.parse
 
 #　各parse_***関数は、Requestを受け取って、それのフィールドメンバに代入して、そのRequestを返す。
-
-header = "(.+)\:\s(.+)"
 
 def parse_requestline(msg: str, request: Request) -> Request:
     params = msg.split(" ")
@@ -15,12 +14,9 @@ def parse_requestline(msg: str, request: Request) -> Request:
 
 def parse_header(lines, request) -> Request:
     for line in lines:
-        print(line)
-        result = re.search(header, line)
-        print(result)
+        result = re.search("(.+)\:\s(.+)", line)
 
         if result is not None:
-            print(result.group(1), result.group(2))
             request.add_header(result.group(1), result.group(2))
 
         if line == "\n":
@@ -30,9 +26,16 @@ def parse_header(lines, request) -> Request:
 
 
 def parse_body(msg, request):
-    pass
+    body_list = msg.split("&")
+    lines = {}
+    for line in body_list:
+        key_value = line.split("=")
+        lines[key_value[0]] = urllib.parse.unquote(key_value[1])
 
-#
+    request.body = lines
+    return request
+
+#  最初に呼び出されるメソッド
 def parse_request(msg: str):
     print("^^^^^^ parse_request ^^^^^^")
 
@@ -59,27 +62,34 @@ def parse_request(msg: str):
 
     request = parse_header(request_header, request)
 
+    request = parse_body(request_body, request)
+
     return request
 
 
 def coroutine(msg: str):
+    # まずリクエストを各行に刻む
     lines = msg.splitlines()
+
+    # リクエストラインの取得
     if lines:
         yield lines[0]
     else:
         yield None
 
+    # ヘッダー部分の取得
     headers = []
-    body = []
     body_linenum = 0
-    for i, line in enumerate(lines[1:]):
-        if line == "\n":
-            body_linenum = i
-            break
-        headers.append(line)
-    yield headers
+    for i in range(1, len(lines)):
+        if lines[i] == '':
+            body_linenum = i + 1
+            yield headers
 
-    for i, line in enumerate(lines[body_linenum:]):
-        body.append(line)
+        headers.append(lines[i])
+
+    # ボディの取得
+    body = ""
+    for line in lines[body_linenum:]:
+        body += line
 
     yield  body

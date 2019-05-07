@@ -4,9 +4,19 @@ import os
 
 def route(request):
     head, tail = os.path.split(request.target)
-    
-    if request.target.startswith("/blog/"):
-        return ArticleController()
+
+    print("request.type",request.type)
+
+    if request.target.startswith("/blog"):
+        controller = ArticleController()
+
+        if request.type == "GET":
+            return controller.do_get(request)
+        elif request.type == "POST":
+            print("do_post\n")
+            return controller.do_post(request)
+
+
     else:
-        print("give a NormalController")
-        return NormalController()
+        controller = NormalController()
+        return controller.do_get(request)
