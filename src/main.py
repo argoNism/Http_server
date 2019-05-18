@@ -42,16 +42,16 @@ def main():
                 with open('errorlog.log', 'a') as f:
                     f.write(str(e))
 
-                wraped_socket.close()
-                print("socket closed")
+                # wraped_socket.close()
+                # print("socket closed")
 
             except ssl.SSLCertVerificationError as e:
                 print("ssl.SSLCertVerificationError", e)
                 with open('errorlog.log', 'a') as f:
                     f.write(str(e))
 
-                wraped_socket.close()
-                print("socket closed")
+                # wraped_socket.close()
+                # print("socket closed")
     
     finally:
         server.close()
