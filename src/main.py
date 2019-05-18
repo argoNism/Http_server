@@ -3,11 +3,12 @@ import ssl
 import worker_thread
 import threading
 
+# HOST = "localhost"
+# DOCUMENT_ROOT = "/Users/usubasatsukifutoshi/Projects/SimpleWebServer/server/www"
+# HTTP = 8000
 HOST = "argonism.info"
-#HOST = "localhost"
 HTTP = 80
 HTTPS = 443
-#DOCUMENT_ROOT = "/Users/usubasatsukifutoshi/Projects/SimpleWebServer/server/www"
 DOCUMENT_ROOT = "/home/argon/Http_server/www"
 CRT = '/etc/letsencrypt/live/argonism.info/cert.pem'
 KEY = '/etc/letsencrypt/live/argonism.info/privkey.pem'

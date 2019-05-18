@@ -14,7 +14,7 @@ utf8_map =[
 ]
 
 rb_map = [
-    "png", "jpeg", "jpeg", "gif", "vnd.microsoft.icon"
+    "png", "jpeg", "jpeg", "gif", "vnd.microsoft.icon", "ico"
 ]
 
 class BaseController:
@@ -51,6 +51,7 @@ class BaseController:
         return path
     
     def open_files(self, path, ext: str):
+        print("ext", ext)
         if ext in utf8_map:
             with open(path, encoding='utf-8') as file:
                 return file.read()
