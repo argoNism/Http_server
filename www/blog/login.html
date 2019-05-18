@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.9.1/firebase-auth.js"></script>
+        
+
+        <meta charset="utf-8">
+        <title>argonism</title>
+        <link rel="icon" href="favicon.ico">
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/login.css">
+        <meta name="description" content="argonism profile page">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+        <script src="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.js"></script>
+        <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/3.5.2/firebaseui.css" />
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <a href="index.html"><img src="img/title.png"></a>
+                <div class="head_nav">
+                    <nav>
+                        <a href="about.html"><div class="about"></div></a>
+                        <a href="works.html"><div class="works"></div></a>
+                        <a href="yard.html"><div class="yard"></div></a>
+                    </nav>
+                </div>
+            </div>
+
+        </header>
+
+        <div class="main">
+            <div id="firebaseui-auth-container"></div>
+            <div id="loader">Loading...</div>
+            <!-- <div class="form">
+                <input id="email" type="email" placeholder="メールアドレスを入力" required/>
+                <input id="password" type="password" placeholder="パスワードを入力" required/>
+                <button id="login">ログイン</button>
+                <button id="newuser">新規登録</button>
+            </div> -->
+        </div>
+
+        <footer>
+            <div class="copy">
+                    © 2019 argonism.
+            </div>
+
+            <nav class="sns">
+                    <ul>
+                        <li>
+                            <a href="https://twitter.com/argo_nism">
+                                <i class="fab fa-twitter" titile="Twitter" ></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-youtube" titile="Twitter"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+        </footer>
+
+        <script src="https://www.gstatic.com/firebasejs/5.10.1/firebase.js"></script>
+        <script>
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyARzw_i6-TMOT2AN1n-mRTiZGtYDs2IqrE",
+            authDomain: "blog-d91ee.firebaseapp.com",
+            databaseURL: "https://blog-d91ee.firebaseio.com",
+            projectId: "blog-d91ee",
+            storageBucket: "blog-d91ee.appspot.com",
+            messagingSenderId: "983468677577"
+        };
+        firebase.initializeApp(config);
+        </script>
+
+        <script type="text/javascript">
+            var ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+            var uiConfig = {
+            callbacks: {
+                signInSuccessWithAuthResult: function(authResult, redirectUrl) {
+                return true;
+                },
+                uiShown: function() {
+                document.getElementById('loader').style.display = 'none';
+                }
+            },
+            signInFlow: 'popup',
+            signInSuccessUrl: 'css/about.css',
+            signInOptions: [
+                firebase.auth.EmailAuthProvider.PROVIDER_ID,
+            ],
+            };
+            ui.start('#firebaseui-auth-container', uiConfig);
+        </script>
+    </body>
+</html>
