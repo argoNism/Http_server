@@ -118,7 +118,6 @@ class ArticleController(BaseController):
         #     return self.response
 
         head, tail = os.path.split(self.path)
-        print("tail",tail)
         self.root, self.ext = os.path.splitext(tail)
         self.ext = self.ext.lstrip(".")
         if self.ext:

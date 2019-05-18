@@ -1,165 +1,82 @@
 HTTP/1.1 200 OK
-Content-Type: text/css
 
-:root {
-    --title-color: #333;
-    --large-width: 1000px;
-    --nav-opacity: opacity(0.4);
-}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>argonism</title>
+        <link rel="icon" href="favicon.ico">
+        <link rel="stylesheet" href="css/common.css">
+        <link rel="stylesheet" href="css/blog_top.css">
+        <meta name="description" content="argonism profile page">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <a href="index.html"><img src="img/title.png"></a>
+                <div class="head_nav">
+                    <nav>
+                        <a href="about.html"><div class="about"></div></a>
+                        <a href="works.html"><div class="works"></div></a>
+                        <a href="yard.html"><div class="yard"></div></a>
+                    </nav>
+                </div>
+            </div>
 
-body {
-    color: #333;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    margin: 0;
-}
+        </header>
 
-/* タイトル */
-header h1 {
-    margin: 1vw;
-    font-size: 5vw;
-    font-family: 'Montserrat', sans-serif;
-    /* 1em = フォントサイズ、　フォントが115pxのとき、0.2em = 23px */
-    letter-spacing: 0.2em;
-    /* 右端にもスペースが追加されるため、左端に同じ幅をとって左右均等に */
-}
+        <div class="main">
+            <section>
+                <ul class="articles">
+                    <li><article><div class="container"><p class="time-stamp">2019-04-27 13:52:14</p><ul class="tags"></ul><h2><i class="fas fa-square-full"></i>たいとる</h2><p class="article">ぼでー</p><a class="continue" href="blog/たいとる"><i class="fas fa-angle-right"></i>続きを読む</a></div></article></li><li><article><div class="container"><p class="time-stamp">2019-04-27 14:05:59</p><ul class="tags"></ul><h2><i class="fas fa-square-full"></i>タイトル</h2><p class="article">ぼでー</p><a class="continue" href="blog/タイトル"><i class="fas fa-angle-right"></i>続きを読む</a></div></article></li><li><article><div class="container"><p class="time-stamp">2019-04-27 13:52:14</p><ul class="tags"><li>VPS</li>
+<li>blog</li>
+<li>ゲーム</li>
+</ul><h2><i class="fas fa-square-full"></i>長さテスト</h2><p class="article">一葉は、その男の、幼年時代、とでも言うべきであろうか、十歳前後かと推定される頃の写真であって、その子...</p><a class="continue" href="blog/長さテスト"><i class="fas fa-angle-right"></i>続きを読む</a></div></article></li><li><article><div class="container"><p class="time-stamp">2019-05-01 19:50:32</p><ul class="tags"><li>blog</li>
+<li>blog</li>
+</ul><h2><i class="fas fa-square-full"></i>これはテスト用。それ以上でもそれ以下でもない。</h2><p class="article">テスト。<br><br><br>三業目<br><br><br>五業目<br><br><br><br><br>8行目</p><a class="continue" href="blog/これはテスト用。それ以上でもそれ以下でもない。"><i class="fas fa-angle-right"></i>続きを読む</a></div></article></li><li><article><div class="container"><p class="time-stamp">2019-05-01 19:52:34</p><ul class="tags"><li>blog</li>
+<li>c#</li>
+</ul><h2><i class="fas fa-square-full"></i>なぞなぞテストようのあれ</h2><p class="article">テストてすお<br>あ<br><br><br>あ<br>ああ<br>あ<br><br><br>あ<br><br><br><br><br>あ<br>あ<br>「」’’...</p><a class="continue" href="blog/なぞなぞテストようのあれ"><i class="fas fa-angle-right"></i>続きを読む</a></div></article></li>
+                </ul>
+            </section>
+            
+    
+            <aside>
+                <div class="container">
+                    <div class="latest">
+                        <p>最近の記事</p>
+                        <ul>
+                            <li><a href="/blog/たいとる"><i class="fas fa-angle-right"></i>たいとる</a></li>
+<li><a href="/blog/長さテスト"><i class="fas fa-angle-right"></i>長さテスト</a></li>
+<li><a href="/blog/タイトル"><i class="fas fa-angle-right"></i>タイトル</a></li>
+<li><a href="/blog/これはテスト用。それ以上でもそれ以下でもない。"><i class="fas fa-angle-right"></i>これはテスト用。それ以上でもそれ以下でもない。</a></li>
+<li><a href="/blog/なぞなぞテストようのあれ"><i class="fas fa-angle-right"></i>なぞなぞテストようのあれ</a></li>
 
-header img {
-    margin: 2vw 0vw 0vw 2vw;
-}
+                        </ul>
+                    </div>
+                </div>
+            </aside>
+        </div>
 
-header a {
-    color: var(--title-color);
-    text-decoration-line: none;
-}
+        <footer>
+            <div class="copy">
+                    © 2019 argonism.
+            </div>
 
-@media (min-width: 768px) {
-
-    header img {
-        width: 30%;  
-    }
-}
-
-@media (max-width: 768px) {
-
-    header img {
-        width: 100%;  
-    }
-}
-
-/* ヘッダーナビ */
-.head_nav ul {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-/* .head_nav a {
-    display: block;
-    padding: 15px;
-    color: inherit;
-    height: 30px;
-    width: 100%;
-} */
-
-.head_nav a {
-    display: block;
-    padding: 0px 15px;
-    color: inherit;
-    height: 3vw;
-    width: 100%;
-}
-
-.head_nav a:hover {
-    -webkit-filter: var(--nav-opacity);
-    -moz-filter: var(--nav-opacity);
-    -o-filter: var(--nav-opacity);
-    -ms-filter: var(--nav-opacity);
-    filter: var(--nav-opacity);
-}
-
-header nav div {
-    border-bottom: solid 1px #333;
-}
-
-.head_nav .about {
-    height: 100%;
-    background-image: url(../img/about.png);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.head_nav .works {
-    height: 100%;
-    background-image: url(../img/works.png);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.head_nav .yard {
-    height: 100%;
-    background-image: url(../img/yard.png);
-    background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
-}
-
-.head_nav nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    max-width: 1000px;
-    max-width: var(--large-width);
-    margin-left: auto;
-    margin-right: auto;   
-    height: 10vw;  
-}
-
-.nav div {
-    width: 100px;
-    flex: 1;
-}
-
-@media (min-width: 768px) {
-}
-/* フッター */
-footer {
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    border-top: solid 1px #333;
-    text-align: center;
-    margin: 0px auto;
-    padding: 10px 0px;
-}
-
-footer .copy {
-    margin-right: 20px;
-}
-
-footer ul {
-    display: flex;
-    margin: 0px;
-    padding: 0px;
-    list-style: none;
-}
-
-footer a {
-    margin: 0px 10px;
-    display: block;
-    color: inherit;
-    font-size: 18px;
-}
-
-@media (min-width: 768px) {
-    footer {
-        width: var(--large-width);
-        /* display: flex;
-        justify-content: center;
-        border-top: solid 1px #333;
-        text-align: center;
-        margin: 0px auto;
-        padding: 10px 0px; */
-    }
-}
+            <nav class="sns">
+                    <ul>
+                        <li>
+                            <a href="https://twitter.com/argo_nism">
+                                <i class="fab fa-twitter" titile="Twitter" ></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="">
+                                <i class="fab fa-youtube" titile="Twitter"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+        </footer>
+    </body>
+</html>

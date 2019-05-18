@@ -85,16 +85,14 @@ def set_latest(template, count=5):
     # c.fetchall() -> 一つの要素が、カラムになってるリスト
     for column in c.fetchall():
         temp = style.replace("%(title)", column[1])
-        temp = temp.replace("%(link)", column[1])
+        temp = temp.replace("%(link)", "/blog/" + column[1])
         li_list += (temp + '\n')
 
-    print("template", template)
     return template.replace("%(latest)", li_list)
 
 def set_tags(template, tags):
     style = '<li>%(tag)</li>'
     li_list = ""
-    print(tags)
     for tag in tags:
         temp = style.replace("%(tag)", tag[0])
         li_list += (temp + '\n')
@@ -121,13 +119,11 @@ def set_top_page(url):
 
     article_list = articles.get_articles(count=10)
     rendered = ""
-    print(article_list)
     for arti in article_list:
         patterns = {}
         if len(arti.body) > 50:
             arti.body = arti.body[:50]
             arti.body += "..."
-        print(arti.body)
         # engine = template_engine.TemplateEngine(arti, partial_temp=template_long)
         patterns['%(time-stamp)'] = arti.created_at
         patterns['%(title)'] = arti.title
