@@ -118,8 +118,11 @@ class ArticleController(BaseController):
         #     return self.response
 
         head, tail = os.path.split(self.path)
+        print("tail",tail)
         self.root, self.ext = os.path.splitext(tail)
         self.ext = self.ext.lstrip(".")
+        print(self.ext)
+        print(bool(self.ext))
         if self.ext:
             normal = NormalController()
             return normal.do_get(request)

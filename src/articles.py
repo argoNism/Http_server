@@ -1,15 +1,16 @@
 import sqlite3
 import re
 from datetime import datetime
+import main
 
-#
+
 #実装していくもの:
 #   データベースに記事を登録
 #   データベースから記事情報を列単位で取り出す。
 #   データベースから記事の検索。結果の取り出し。
 #   タグの管理。
 
-DATABASE_ROOT = "../db/"
+DATABASE_ROOT = main.DOCUMENT_ROOT + "/../db/"
 
 class Article:
     def __init__(self, title: str, body: str, tags: list, created_at="", updated_at=""):
