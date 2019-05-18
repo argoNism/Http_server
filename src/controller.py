@@ -7,7 +7,7 @@ from http_state import States
 import articles
 from template_engine import TemplateEngine
 import replace_engine
-import pdb;
+import pdb
 
 utf8_map =[
     "html", "css", "plane", "javascript"
@@ -119,6 +119,12 @@ class ArticleController(BaseController):
 
         head, tail = os.path.split(self.path)
         print("tail",tail)
+        self.root, self.ext = os.path.splitext(tail)
+        self.ext = self.ext.lstrip(".")
+        if self.ext:
+            normal = NormalController()
+            return normal.do_get(request)
+
         if tail and not tail == "blog":
             print("in article")
             article = articles.get_articles(tail)
@@ -135,10 +141,10 @@ class ArticleController(BaseController):
         else:
             print("in blog_top")
             self.response = Response(main.protocolVersion, States.OK)
-            self.response.body = replace_engine.set_top_page(main.DOCUMENT_ROOT + "/blog_top.html")
+            self.response.body = replace_engine.set_top_page(os.path.join(main.DOCUMENT_ROOT, "blog_top.html"))
             self.ext = "html"
 
-            return self.response
+            # return self.response
             # self.response = Response(main.protocolVersion, States.Not_Found)
             # self.response.body = os.path.join(main.DOCUMENT_ROOT, "blog.html")
             # self.ext = "html"

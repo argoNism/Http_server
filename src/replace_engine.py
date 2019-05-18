@@ -85,7 +85,7 @@ def set_latest(template, count=5):
     # c.fetchall() -> 一つの要素が、カラムになってるリスト
     for column in c.fetchall():
         temp = style.replace("%(title)", column[1])
-        temp = temp.replace("%(link)", "blog/" + column[1])
+        temp = temp.replace("%(link)", column[1])
         li_list += (temp + '\n')
 
     print("template", template)

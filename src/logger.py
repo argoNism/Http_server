@@ -1,6 +1,7 @@
 import sqlite3
 import re
 import main
+import os
 
 class Logger:
     def __init__(self, msg, ip, request):
@@ -31,7 +32,7 @@ class Logger:
     @classmethod
     def add_row(self, msg, ip, request):
         try:
-            conn = sqlite3.connect(main.DOCUMENT_ROOT + '../db/log.db')
+            conn = sqlite3.connect(os.path.join(main.DOCUMENT_ROOT, '../db/log.db'))
             c = conn.cursor()
             logger = Logger(msg, ip, request)
             c.execute("insert into log (host, ip, request) values (?,?,?)", (logger.host_name, logger.ip, logger.request))
