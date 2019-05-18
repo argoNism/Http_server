@@ -23,7 +23,7 @@ class BaseController:
         pass
 
     #GETメソッドを受け取った時
-    def do_get(self, request) -> Response:
+    def do_get(self, request):
         self.path: str = urllib.parse.unquote(request.target)
         self.root, self.ext = os.path.splitext(self.path)
         self.ext = self.ext.lstrip(".")
@@ -41,7 +41,7 @@ class BaseController:
             path = "index.html"
 
         if (path.endswith("/")):
-            path = path = path.rstrip("/")
+            path = path.rstrip("/")
 
 
             # 受け取ったpath
@@ -86,6 +86,7 @@ class NormalController(BaseController):
         #指定されたuriのファイルが存在するか確認
         if not self.path:
             self.path = "index.html"
+            self.ext = "html"
 
         target_file_path = os.path.join(main.DOCUMENT_ROOT, self.path)
         print(target_file_path)
