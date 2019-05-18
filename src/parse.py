@@ -9,6 +9,7 @@ def parse_requestline(msg: str, request: Request) -> Request:
 
     request.type, request.target, request.version = (params[0], params[1], params[2])
 
+    print("target:", params[1])
     return request
 
 

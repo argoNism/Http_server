@@ -84,12 +84,13 @@ class NormalController(BaseController):
         # make responce object so determine states code
         #指定されたuriのファイルが存在するか確認
         if not self.path:
-            self.path = "/index.html"
+            self.path = "index.html"
 
-        print(main.DOCUMENT_ROOT, self.path)
-        if os.path.exists(main.DOCUMENT_ROOT + self.path) and os.path.isfile(main.DOCUMENT_ROOT + self.path):
+        target_file_path = os.path.join(main.DOCUMENT_ROOT, self.path)
+        print(target_file_path)
+        if os.path.exists(target_file_path) and os.path.isfile(target_file_path):
             self.response = Response(main.protocolVersion, States.OK)
-            self.response.body = self.open_files(main.DOCUMENT_ROOT + self.path ,self.ext)
+            self.response.body = self.open_files(target_file_path, self.ext)
 
         #ファイルが見つからない時、not_found.htmlを送信
         else:
