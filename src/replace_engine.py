@@ -111,7 +111,7 @@ def set_top_page(url):
                                 '</ul>'\
                                 '<h2><i class="fas fa-square-full"></i>%(title)</h2>'\
                                 '<p class="article">%(body)</p>'\
-                                '<a class="continue" href="blog/%(title)"><i class="fas fa-angle-right"></i>続きを読む</a>'\
+                                '<a class="continue" href="/blog/%(title)"><i class="fas fa-angle-right"></i>続きを読む</a>'\
                             '</div>'\
                         '</article>'\
                     '</li>'

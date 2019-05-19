@@ -1,4 +1,6 @@
 db/log.db
+src/__pycache__
+src/config.py
 <<<<<<< HEAD
 venv/
 __pycache__/
